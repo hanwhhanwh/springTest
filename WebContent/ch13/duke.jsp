@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -12,7 +13,7 @@
 <title>Duke</title>
 </head>
 <body>
-<h1>이름은 <%= name%>입니다. </h1><br /><br />
+<h1>이름은 <%=URLDecoder.decode(name, "UTF-8") %>입니다. </h1><br /><br />
 <img src="../image/<%=imgName %>"  />
 </body>
 </html>
