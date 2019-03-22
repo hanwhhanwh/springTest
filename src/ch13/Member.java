@@ -2,22 +2,22 @@ package ch13;
 
 import java.sql.Date;
 
-public class MemberBean {
+public class Member {
 	private String id;
-	private String pwd;
+	private String passwordd;
 	private String name;
 	private String email;
 	private Date joinDate;
 	
 	
-	public MemberBean() {
+	public Member() {
 		
 	}
 
 
-	public MemberBean(String id, String pwd, String name, String email) {
+	public Member(String id, String pwd, String name, String email) {
 		this.id = id;
-		this.pwd = pwd;
+		this.passwordd = pwd;
 		this.name = name;
 		this.email = email;
 	}
@@ -33,13 +33,13 @@ public class MemberBean {
 	}
 
 
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return passwordd;
 	}
 
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPasswordd(String pwd) {
+		this.passwordd = pwd;
 	}
 
 

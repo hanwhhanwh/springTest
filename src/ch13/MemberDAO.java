@@ -27,27 +27,27 @@ public class MemberDAO {
 		}
 	}
 
-	public List<MemberBean> listMembers() {
-		List<MemberBean> list = new ArrayList();
+	public List<Member> listMembers() {
+		List<Member> list = new ArrayList();
 		try {
 			con = dataFactory.getConnection();
-			String query = "SELECT user_id, `password`, user_name, email, join_date FROM MEMBER ORDER BY join_date DESC ";
+			String query = "SELECT member_id, `password`, member_name, email, join_date FROM MEMBER ORDER BY join_date DESC ";
 			System.out.println("prepareStatememt: " + query);
 			pstmt = con.prepareStatement(query);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				String id = rs.getString("user_id");
+				String id = rs.getString("member_id");
 				String pwd = rs.getString("password");
-				String name = rs.getString("user_name");
+				String name = rs.getString("member_name");
 				String email = rs.getString("email");
 				Date joinDate = rs.getDate("join_date");
-				MemberBean vo = new MemberBean();
-				vo.setId(id);
-				vo.setPwd(pwd);
-				vo.setName(name);
-				vo.setEmail(email);
-				vo.setJoinDate(joinDate);
-				list.add(vo);
+				Member member = new Member();
+				member.setId(id);
+				member.setPasswordd(pwd);
+				member.setName(name);
+				member.setEmail(email);
+				member.setJoinDate(joinDate);
+				list.add(member);
 			}
 			rs.close();
 			pstmt.close();
@@ -58,15 +58,15 @@ public class MemberDAO {
 		return list;
 	}
 
-	public void addMember(MemberBean memberBean) {
+	public void addMember(Member member) {
 		try {
 			Connection con = dataFactory.getConnection();
-			String id = memberBean.getId();
-			String pwd = memberBean.getPwd();
-			String name = memberBean.getName();
-			String email = memberBean.getEmail();
+			String id = member.getId();
+			String pwd = member.getPassword();
+			String name = member.getName();
+			String email = member.getEmail();
 			String query = "INSERT INTO MEMBER";
-			query += " (user_id, password, user_name, email)";
+			query += " (member_id, password, member_name, email)";
 			query += " VALUES (?,?,?,?)";
 			System.out.println("prepareStatememt: " + query);
 			pstmt = con.prepareStatement(query);
