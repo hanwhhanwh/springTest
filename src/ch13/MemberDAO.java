@@ -20,8 +20,9 @@ public class MemberDAO {
 	public MemberDAO() {
 		try {
 			Context ctx = new InitialContext();
-			Context envContext = (Context) ctx.lookup("java:/comp/env");
-			dataFactory = (DataSource) envContext.lookup("jdbc/oracle");
+//			Context envContext = (Context) ctx.lookup("java:/comp/env");
+//			dataFactory = (DataSource) envContext.lookup("jdbc/oracle");
+			dataFactory = (DataSource) ctx.lookup("java:/comp/env/jdbc/MariaDB");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -67,13 +68,13 @@ public class MemberDAO {
 			String email = member.getEmail();
 			String query = "INSERT INTO MEMBER";
 			query += " (member_id, password, member_name, email)";
-			query += " VALUES (?,?,?,?)";
+			query += " VALUES (?,password('" + pwd + "'),?,?)";
 			System.out.println("prepareStatememt: " + query);
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, id);
-			pstmt.setString(2, pwd);
-			pstmt.setString(3, name);
-			pstmt.setString(4, email);
+//			pstmt.setString(2, pwd);
+			pstmt.setString(2, name);
+			pstmt.setString(3, email);
 			pstmt.executeUpdate();
 			pstmt.close();
 		} catch (Exception e) {
