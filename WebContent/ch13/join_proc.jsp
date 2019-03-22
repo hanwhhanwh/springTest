@@ -4,18 +4,22 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String  id=request.getParameter("member_id");
-	String  pwd = request.getParameter("password");
-	String  name = request.getParameter("member_name");
-	String  email = request.getParameter("email");
+// 	String  id=request.getParameter("id");
+// 	String  pwd = request.getParameter("password");
+// 	String  name = request.getParameter("name");
+// 	String  email = request.getParameter("email");
 %>
 <jsp:useBean  id="m"  class="ch13.Member"  scope="page"/>
+<jsp:setProperty name="m" property="id"  />
+<jsp:setProperty name="m" property="password"  />
+<jsp:setProperty name="m" property="name"   />
+<jsp:setProperty name="m" property="email" />
 <%
 //	Member m =  new Member(id, pwd, name, email);
-	m.setId(id);
-	m.setPasswordd(pwd);
-	m.setName(name);
-	m.setEmail(email);
+// 	m.setId(id);
+// 	m.setPasswordd(pwd);
+// 	m.setName(name);
+// 	m.setEmail(email);
 
 	MemberDAO  memberDAO=new MemberDAO();
 	memberDAO.addMember(m);

@@ -44,7 +44,7 @@ public class MemberDAO {
 				Date joinDate = rs.getDate("join_date");
 				Member member = new Member();
 				member.setId(id);
-				member.setPasswordd(pwd);
+				member.setPassword(pwd);
 				member.setName(name);
 				member.setEmail(email);
 				member.setJoinDate(joinDate);

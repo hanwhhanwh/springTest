@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Member {
 	private String id;
-	private String passwordd;
+	private String password;
 	private String name;
 	private String email;
 	private Date joinDate;
@@ -17,7 +17,7 @@ public class Member {
 
 	public Member(String id, String pwd, String name, String email) {
 		this.id = id;
-		this.passwordd = pwd;
+		this.password = pwd;
 		this.name = name;
 		this.email = email;
 	}
@@ -34,12 +34,12 @@ public class Member {
 
 
 	public String getPassword() {
-		return passwordd;
+		return password;
 	}
 
 
-	public void setPasswordd(String pwd) {
-		this.passwordd = pwd;
+	public void setPassword(String pwd) {
+		this.password = pwd;
 	}
 
 
