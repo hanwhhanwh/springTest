@@ -10,10 +10,11 @@
 // 	String  email = request.getParameter("email");
 %>
 <jsp:useBean  id="m"  class="ch13.Member"  scope="page"/>
-<jsp:setProperty name="m" property="id"  />
-<jsp:setProperty name="m" property="password"  />
-<jsp:setProperty name="m" property="name"   />
-<jsp:setProperty name="m" property="email" />
+<jsp:setProperty name="m" property="*"  />
+<%-- <jsp:setProperty name="m" property="id"  /> --%>
+<%-- <jsp:setProperty name="m" property="password"  /> --%>
+<%-- <jsp:setProperty name="m" property="name"   /> --%>
+<%-- <jsp:setProperty name="m" property="email" /> --%>
 <%
 //	Member m =  new Member(id, pwd, name, email);
 // 	m.setId(id);
