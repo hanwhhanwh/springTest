@@ -54,13 +54,17 @@
 \${"hello" ne "apple" } : ${"hello" ne "apple" }<br />
 </h3>
 
-<h2>EL 논리 연산자 사용</h2>
-<h3>
-\${empty m1 } : ${empty m1 } <br />
-\${not empty m1 } : ${not empty m1 } <br /><br />
+<jsp:useBean  id="member"  class="ch13.Member" scope="page"  />
+<jsp:setProperty  name="member"  property="name" value="hanwh"/>
+<jsp:useBean  id="arrayList"  class="java.util.ArrayList" scope="page"  />
 
-\${empty m2 } : ${empty m2 } <br />
-\${not empty m2} : ${not empty m2 } <br /><br />
+<h2>EL empty 연산자 사용</h2>
+<h3>
+\${empty member } : ${empty member } <br />
+\${not empty member } : ${not empty member } <br /><br />
+
+\${empty arrayList } : ${empty arrayList } <br />
+\${not empty arrayList} : ${not empty arrayList } <br /><br />
 
 \${empty "hello"} : ${empty "hello" }<br />
 \${empty null} : ${empty null } <br />

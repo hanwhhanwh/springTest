@@ -29,7 +29,7 @@ public class MemberDAO {
 	}
 
 	public List<Member> listMembers() {
-		List<Member> list = new ArrayList();
+		List<Member> list = new ArrayList<>();
 		try {
 			con = dataFactory.getConnection();
 			String query = "SELECT member_id, `password`, member_name, email, join_date FROM MEMBER ORDER BY join_date DESC ";
