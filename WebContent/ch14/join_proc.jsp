@@ -10,6 +10,8 @@
 	String  address = (String)request.getAttribute("address");
 // 	String  address = request.getParameter("address");
 %>
+<jsp:useBean  id="member" class="ch13.Member" />
+<jsp:setProperty  name="member" property="*" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +20,7 @@
 </head>
 <body>
 <h1>회원 가입 처리</h1>
-<table border="1"  align="center" >
+<div align="center"><table border="1">
 <tr align="center" bgcolor="#99ccff">
 <td width="20%"><b>아이디</b></td>
 <td width="20%"><b>비밀번호</b></td>
@@ -40,7 +42,14 @@
 <td>${param.email }</td>
 <td>${requestScope.address }</td>
 </tr>
+<tr align=center>
+<td>${member.id } </td>
+<td>${member.password } </td>
+<td>${member.name } </td>
+<td>${member.email }</td>
+<td>${requestScope.address }</td>
+</tr>
 </table>
-
+</div>
 </body>
 </html>
