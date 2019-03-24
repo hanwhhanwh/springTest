@@ -62,8 +62,6 @@ public class UploadFile extends HttpServlet {
 					System.out.println("파일명 : " + fileItem.getName());
 					System.out.println("파일크기 : " + fileItem.getSize() + "bytes");
 
-					out.println("<img src=\"/myShop/download.do?fileName=" + fileItem.getName() + "\" /><br />");
-					out.println("<a href=\"/myShop/download.do?fileName=" + fileItem.getName() + "\">이미지 다운로드</a><hr />");
 					if (fileItem.getSize() > 0) {
 						int idx = fileItem.getName().lastIndexOf("\\");
 						if (idx == -1) {
@@ -72,6 +70,8 @@ public class UploadFile extends HttpServlet {
 						String fileName = fileItem.getName().substring(idx + 1);
 						File uploadFile = new File(strUploadDir + "\\" + fileName);
 						fileItem.write(uploadFile);
+						out.println("<img src=\"/myShop/download.do?fileName=" + fileName + "\" /><br />");
+						out.println("<a href=\"/myShop/download.do?fileName=" + fileName + "\">이미지 다운로드</a><hr />");
 					} // end if
 				} // end if
 			} // end for

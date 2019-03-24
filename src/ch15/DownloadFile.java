@@ -43,10 +43,9 @@ public class DownloadFile extends HttpServlet {
 	}
 
 	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("DownloadFile : doPost() »£√‚µ ");
-
         request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+        response.setContentType("text/html; charset=utf-8");
+//		response.setContentType("image/png");
 		String file_repo = "C:\\temp";
 		String fileName = (String) request.getParameter("fileName");
 		System.out.println("fileName = " + fileName);
