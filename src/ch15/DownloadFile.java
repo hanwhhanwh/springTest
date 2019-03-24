@@ -51,10 +51,10 @@ public class DownloadFile extends HttpServlet {
 		System.out.println("fileName = " + fileName);
 		OutputStream out = response.getOutputStream();
 		String downFile = file_repo + "\\" + fileName;
-		File f = new File(downFile);
+		File file = new File(downFile);
 		response.setHeader("Cache-Control", "no-cache");
 		response.addHeader("Content-disposition", "attachment; fileName=" + fileName);
-		FileInputStream in = new FileInputStream(f);
+		FileInputStream in = new FileInputStream(file);
 		byte[] buffer = new byte[1024 * 8];
 		while (true) {
 			int count = in.read(buffer);
