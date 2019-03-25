@@ -10,10 +10,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>다국여 변환 시험</title>
+<title>다국어 변환 시험</title>
 </head>
 <body>
-<h1>다국여 변환 시험</h1>
+<h1>다국어 변환 시험</h1>
 
 <fmt:setLocale value="en_US" />
 <%-- <fmt:setLocale value="ko_KR" /> --%>
