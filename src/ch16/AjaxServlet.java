@@ -32,27 +32,12 @@ public class AjaxServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("AjaxServlet : doGet 호출됨");
 
-//        request.setCharacterEncoding("utf-8");
-//		response.setContentType("text/html; charset=utf-8");
-//		String param = (String) request.getParameter("param");
-//		System.out.println("param = " + param);
-//		PrintWriter writer = response.getWriter();
-//		writer.print("안녕하세요. AJAX 시험입니다.");
-
         request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		String param = (String) request.getParameter("param");
+		System.out.println("param = " + param);
 		PrintWriter writer = response.getWriter();
-
-		String id = (String) request.getParameter("id");
-		System.out.println("member id = " + id);
-		MemberDAO memberDAO = new MemberDAO();
-		boolean isDuplicatedID = memberDAO.isDuplicatedID(id);
-
-		if (isDuplicatedID) {
-			writer.print("duplicated");
-		} else {
-			writer.print("ok");
-		}
+		writer.print("안녕하세요. AJAX 시험입니다.");
 	}
 
 	/**
