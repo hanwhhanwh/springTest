@@ -6,7 +6,7 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(function() {
-		$("#checkJson").click(function() {
+		$("#checkJson1").click(function() {
 			var jsonStr	 = '{"name": ["홍길동", "이순신", "임꺽정"] }';			
 			var jsonInfo = JSON.parse(jsonStr);
 			var output ="회원 이름<br>";
@@ -18,11 +18,95 @@
 		});
 	});
 		
+	$(function() {
+		 $("#checkJson2").click(function() {		  
+			var jsonStr = '{"members":[{"name":"박지성","age":"25","gender":"남자","nickname":"날센돌이"}'
+							+', {"name":"손흥민","age":"30","gender":"남자","nickname":"탱크"}] }';
+			var jsonInfo = JSON.parse(jsonStr);
+			var output ="회원 정보<br>";
+			output += "=======<br>";
+			for(var i in jsonInfo.members){
+				output += i + ")<br />";
+				output += "이름: " + jsonInfo.members[i].name+"<br>";
+				output += "나이: " + jsonInfo.members[i].age+"<br>";
+				output += "성별: " + jsonInfo.members[i].gender+"<br>";
+				output += "별명: " +jsonInfo.members[i].nickname+"<br /><br /><br />\r\n";
+			}
+			$("#output2").html(output);
+		});
+	});
+
+	$(function() {
+		$("#checkJson3").click(function() {
+			var _jsonInfo ='{"name":"박지성","age":"25","gender":"남자","nickname":"날센돌이"}';
+			$.ajax({
+				type:"get",
+				async:false, 
+				url:"/myShop/json",
+				data : {jsonInfo: _jsonInfo},
+				success:function (data,textStatus){
+				},
+				error:function(data,textStatus){
+					alert("에러가 발생했습니다.");
+				},
+				complete:function(data,textStatus){
+				}
+			});  //end ajax	
+		});
+	});
+
+	$(function() {
+		$("#checkJson4").click(function() {
+			$.ajax({
+				type:"post",
+				async:false, 
+				url:"/myShop/json",
+				success:function (data,textStatus){
+					var jsonInfo = JSON.parse(data);
+					var memberInfo ="회원 정보<br>";
+					memberInfo += "=======<br>";
+					for(var i in jsonInfo.members){
+						memberInfo += "이름: " + jsonInfo.members[i].name+"<br>";
+						memberInfo += "나이: " + jsonInfo.members[i].age+"<br>";
+						memberInfo += "성별: " + jsonInfo.members[i].gender+"<br>";
+						memberInfo += "별명: " + jsonInfo.members[i].nickname+"<br><br><br>";
+					}
+		        	
+					var booksInfo = "<br><br><br>도서 정보<br>";
+					booksInfo += "===========<br>";
+					for(var i in jsonInfo.books) {
+						booksInfo += "제목: " + jsonInfo.books[i].title+"<br>";
+						booksInfo += "저자: " + jsonInfo.books[i].writer+"<br>";
+						booksInfo += "가격: " + jsonInfo.books[i].price+"원 <br>";
+						booksInfo += "장르: " + jsonInfo.books[i].genre+"<br>";
+						imageURL = jsonInfo.books[i].image;
+						booksInfo += "<img src="+imageURL+" />"+"<br><br><br>";
+					}
+					$("#output4").html(memberInfo+"<br>"+booksInfo);
+				},
+				error:function(data,textStatus){
+					alert("에러가 발생했습니다.");
+				}
+			});  //end ajax	
+		});
+	});
 </script>
 </head>
 <body>
-<a id="checkJson" style="cursor:pointer">출력</a><br /><br />
+<a id="checkJson1" style="cursor:pointer">출력1</a><br /><br />
 <div id="output1"></div>
+<hr />
+
+<a id="checkJson2" style="cursor:pointer">출력2</a><br /><br />
+<div id="output2"></div>
+<hr />
+
+<a id="checkJson3" style="cursor:pointer">출력3</a><br /><br />
+<div id="output3"></div>
+<hr />
+
+<a id="checkJson4" style="cursor:pointer">출력4</a><br /><br />
+<div id="output4"></div>
 <hr />
 
 </body>
