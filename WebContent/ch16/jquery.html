@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ID 셀렉터 연습1</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"> 
+	$(document).ready(function(){				
+		alert($("#unique2").html());	
+	});
+
+	function addHtml(){
+		$("#article").html('Add clicked<br />안녕하세요'+'<br />');
+	}
+
+	function addImage(){
+		$(".class1").html("<img src='../image/duke.png'>");
+	}
+
+</script>
+</head>
+<body>
+<div class="class1">안녕하세요.</div>
+<div id="unique2">제이쿼리입니다!!</div>
+<div id="unique3">
+	<p>제이쿼리는 아주 쉽습니다!!!</p> 
+</div>
+<hr />
+
+<div>
+	<p id="article"></p>
+</div>
+<input type="button" value="추가하기"  onClick="addHtml()"  />
+<hr />
+
+<div class="class1">
+</div>
+<div class="class1">
+</div>
+<input type="button" value="이미지 추가하기"  onClick="addImage()"  />
+<hr />
+
+
+</body>
+</html>

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ch13.*;
+
 /**
  * Servlet implementation class AjaxServlet
  */
@@ -30,19 +32,34 @@ public class AjaxServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("AjaxServlet : doGet 호출됨");
 
+//        request.setCharacterEncoding("utf-8");
+//		response.setContentType("text/html; charset=utf-8");
+//		String param = (String) request.getParameter("param");
+//		System.out.println("param = " + param);
+//		PrintWriter writer = response.getWriter();
+//		writer.print("안녕하세요. AJAX 시험입니다.");
+
         request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		String param = (String) request.getParameter("param");
-		System.out.println("param = " + param);
 		PrintWriter writer = response.getWriter();
-		writer.print("안녕하세요. AJAX 시험입니다.");
+
+		String id = (String) request.getParameter("id");
+		System.out.println("member id = " + id);
+		MemberDAO memberDAO = new MemberDAO();
+		boolean isDuplicatedID = memberDAO.isDuplicatedID(id);
+
+		if (isDuplicatedID) {
+			writer.print("duplicated");
+		} else {
+			writer.print("ok");
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("AjaxServlet : doGet 호출됨");
+        System.out.println("AjaxServlet : doPost 호출됨");
 
         request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -60,5 +77,34 @@ public class AjaxServlet extends HttpServlet {
 			"</book></main>";
 		System.out.println(result);
 		writer.print(result);
+	}
+
+	/**
+	 * @see HttpServlet#doPut(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("AjaxServlet : doPut 호출됨");
+
+        request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+
+		String id = (String) request.getParameter("id");
+		System.out.println("member id = " + id);
+		MemberDAO memberDAO = new MemberDAO();
+		boolean isDuplicatedID = memberDAO.isDuplicatedID(id);
+
+		if (isDuplicatedID) {
+			writer.print("duplicated");
+		} else {
+			writer.print("ok");
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
+	 */
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("AjaxServlet : doDelete 호출됨");
 	}
 }

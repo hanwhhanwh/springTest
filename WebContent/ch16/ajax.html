@@ -50,6 +50,34 @@
 			}
 		}); 
 	}
+
+	function ajax_check_id(){
+		var _id=$("#member_id").val();
+		if(_id==''){
+			alert("ID를 입력하세요");
+			return;
+		}
+		$.ajax({
+			type:"put",
+			async:false,  
+			url:"http://localhost:8090/myShop/ajax",
+			dataType:"text",
+			data: {id:_id},
+			success:function (data,textStatus){
+				if(data=='ok'){
+					$('#message').text("사용할 수 있는 ID입니다.");
+					$('#btnDuplicate').prop("disabled", true);
+				}else{
+					$('#message').text("사용할 수 없는 ID입니다.");
+				}
+			},
+			error:function(data,textStatus){
+			},
+			complete:function(data,textStatus){
+				//alert("작업을완료 했습니다");
+			}
+		});  //end ajax	 
+	}		
 </script>
 </head>
 <body>
@@ -59,6 +87,11 @@
 
 <div id="bookInfo"></div>
 <input type=button value="도서정보 요청"  onclick="ajax_process_book()">
+<hr />
+
+<input  type="text" id="member_id"/>
+<input type="button" id="btn_duplicate" value="ID 중복체크하기" onClick="ajax_check_id()" /><br><br>
+<div id="message"></div>
 
 </body>
 </html>

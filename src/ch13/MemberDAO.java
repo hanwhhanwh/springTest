@@ -77,8 +77,28 @@ public class MemberDAO {
 			pstmt.setString(3, email);
 			pstmt.executeUpdate();
 			pstmt.close();
+			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean isDuplicatedID(String id) {
+		boolean result = false;
+		try {
+			Connection con = dataFactory.getConnection();
+			String query = "SELECT COUNT(*) AS cnt FROM MEMBER WHERE member_id LIKE ?";
+			System.out.println("prepareStatememt: " + query);
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(0) > 0;
+			pstmt.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }
