@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax 시험</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	function ajax_process(){
+		$.ajax({
+			type:"get",
+			dataType:"text",
+			async:false,  
+			url:"http://localhost:8090/myShop/ajax",
+			data: {param:"Hello, jQuery & Ajax"},
+			success:function (data, textStatus){
+				$('#message').append(data);
+			},
+			error:function(data,textStatus){
+				alert("에러가 발생했습니다.\r\ndata = " + data + "\r\ntextStatus = " + textStatus);
+			},
+			complete:function(data,textStatus){
+				alert("작업을완료 했습니다\r\ndata = " + data + "\r\ntextStatus = " + textStatus);
+			}
+		});	
+	}		
+
+	function ajax_process_book(){
+		$.ajax({
+			type:"post",
+			async:false, 
+			url:"http://localhost:8090/myShop/ajax",
+			dataType:"xml",
+			success:function (info,textStatus){
+				$(info).find("book").each(function(){  
+					var title=$(this).find("title").text();
+					var writer=$(this).find("writer").text();
+					var image=$(this).find("image").text();
+					$("#bookInfo").append(
+						"<p>" +title+ "</p>" +
+						"<p>" +writer + "</p>"+
+						"<img src="+image + " />"				
+					);
+				});
+			},
+			error:function(data,textStatus){
+				alert("에러가 발생했습니다.");
+			},
+			complete:function(data,textStatus){
+				//alert("작업을완료 했습니다");
+			}
+		}); 
+	}
+</script>
+</head>
+<body>
+<input type="button" value="전송하기" onClick="ajax_process()" /><br><br>
+<div id="message"></div>
+<hr />
+
+<div id="bookInfo"></div>
+<input type=button value="도서정보 요청"  onclick="ajax_process_book()">
+
+</body>
+</html>
