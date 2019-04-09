@@ -23,14 +23,14 @@ public class DownloadFile extends HttpServlet {
      */
     public DownloadFile() {
         super();
-        System.out.println("DownloadFile ª˝º∫µ ");
+        System.out.println("DownloadFile ÏÉùÏÑ±Îê®");
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("DownloadFile : doGet() »£√‚µ ");
+        System.out.println("DownloadFile : doGet() Ìò∏Ï∂úÎê®");
         doHandle(request, response);
 	}
 
@@ -38,7 +38,7 @@ public class DownloadFile extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("DownloadFile : doPost() »£√‚µ ");
+        System.out.println("DownloadFile : doPost() Ìò∏Ï∂úÎê®");
         doHandle(request, response);
 	}
 

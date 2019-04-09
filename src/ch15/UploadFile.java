@@ -28,14 +28,14 @@ public class UploadFile extends HttpServlet {
      */
     public UploadFile() {
         super();
-        System.out.println("UploadFile »ı¼ºµÊ");
+        System.out.println("UploadFile ìƒì„±ë¨");
     }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("UploadFile : doPost() È£ÃâµÊ");
+        System.out.println("UploadFile : doPost() í˜¸ì¶œë¨");
 
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=utf-8");
@@ -47,8 +47,8 @@ public class UploadFile extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		ServletFileUpload upload = new ServletFileUpload(factory);
-		out.println("<h1>ÆÄÀÏ ¾÷·Îµå ¿Ï·á / ´Ù¿î·Îµå ½ÃÇè</h1>");
-		out.println("ÆÄÀÏ ´Ù¿î·Îµå ¿äÃ»<br /><hr>");
+		out.println("<h1>íŒŒì¼ ì—…ë¡œë“œ ì™„ë£Œ / ë‹¤ìš´ë¡œë“œ ì‹œí—˜</h1>");
+		out.println("íŒŒì¼ ë‹¤ìš´ë¡œë“œ ìš”ì²­<br /><hr>");
 		try {
 			List<FileItem> fileItems = upload.parseRequest(request);
 //			for (int i = 0; i < fileItems.size(); i++) {
@@ -58,9 +58,9 @@ public class UploadFile extends HttpServlet {
 				if (fileItem.isFormField()) {
 					System.out.println(fileItem.getFieldName() + "=" + fileItem.getString(encoding));
 				} else {
-					System.out.println("ÆÄ¶ó¹ÌÅÍ¸í : " + fileItem.getFieldName());
-					System.out.println("ÆÄÀÏ¸í : " + fileItem.getName());
-					System.out.println("ÆÄÀÏÅ©±â : " + fileItem.getSize() + "bytes");
+					System.out.println("íŒŒë¼ë¯¸í„°ëª… : " + fileItem.getFieldName());
+					System.out.println("íŒŒì¼ëª… : " + fileItem.getName());
+					System.out.println("íŒŒì¼í¬ê¸° : " + fileItem.getSize() + "bytes");
 
 					if (fileItem.getSize() > 0) {
 						int idx = fileItem.getName().lastIndexOf("\\");
@@ -71,7 +71,7 @@ public class UploadFile extends HttpServlet {
 						File uploadFile = new File(strUploadDir + "\\" + fileName);
 						fileItem.write(uploadFile);
 						out.println("<img src=\"/myShop/download.do?fileName=" + fileName + "\" /><br />");
-						out.println("<a href=\"/myShop/download.do?fileName=" + fileName + "\">ÀÌ¹ÌÁö ´Ù¿î·Îµå</a><hr />");
+						out.println("<a href=\"/myShop/download.do?fileName=" + fileName + "\">ì´ë¯¸ì§€ ë‹¤ìš´ë¡œë“œ</a><hr />");
 					} // end if
 				} // end if
 			} // end for
