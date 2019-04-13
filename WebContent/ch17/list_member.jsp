@@ -34,12 +34,13 @@ request.setCharacterEncoding("UTF-8");
 	<td width="7%" ><b>이름</b></td>
 	<td width="7%"><b>이메일</b></td>
 	<td width="7%" ><b>가입일</b></td>
+	<td width="7%" ><b>관리</b></td>
 </tr>
 
 <c:choose>
 <c:when test="${ membersList==null}" >
 <tr>
-	<td colspan=5>
+	<td colspan=6>
 		<b>등록된 회원이 없습니다.</b>
 	</td>  
 </tr>
@@ -51,7 +52,8 @@ request.setCharacterEncoding("UTF-8");
 	<td>${mem.password }</td>
 	<td>${mem.name}</td>     
 	<td>${mem.email }</td>     
-	<td>${mem.joinDate}</td>     
+	<td>${mem.joinDate}</td>
+	<td><a href="/myShop/member/modify?member_id=${mem.id }">수정</a> <a href="/myShop/member/delete?member_id=${mem.id }">삭제</a></td>     
 </tr>
 </c:forEach>
 </c:when>

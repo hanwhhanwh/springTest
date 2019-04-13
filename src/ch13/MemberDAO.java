@@ -13,20 +13,20 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class MemberDAO {
-	private Connection con;
-	private PreparedStatement pstmt;
-	private DataSource dataFactory;
+    private Connection con;
+    private PreparedStatement pstmt;
+    private DataSource dataFactory;
 
-	public MemberDAO() {
-		try {
-			Context ctx = new InitialContext();
-//			Context envContext = (Context) ctx.lookup("java:/comp/env");
-//			dataFactory = (DataSource) envContext.lookup("jdbc/oracle");
-			dataFactory = (DataSource) ctx.lookup("java:/comp/env/jdbc/MariaDB");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    public MemberDAO() {
+        try {
+            Context ctx = new InitialContext();
+//          Context envContext = (Context) ctx.lookup("java:/comp/env");
+//          dataFactory = (DataSource) envContext.lookup("jdbc/oracle");
+            dataFactory = (DataSource) ctx.lookup("java:/comp/env/jdbc/MariaDB");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 	public List<Member> listMembers() {
 		List<Member> list = new ArrayList<>();

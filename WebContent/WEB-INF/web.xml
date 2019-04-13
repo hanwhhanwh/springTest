@@ -17,4 +17,8 @@
     <error-code>500</error-code>
     <location>/error_500.jsp</location>
   </error-page>
+  <context-param>
+    <param-name>config_folder</param-name>
+    <param-value>D:\MyProj\JSP\myShop\config</param-value>
+  </context-param>
 </web-app>
