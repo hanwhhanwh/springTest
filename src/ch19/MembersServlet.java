@@ -52,6 +52,10 @@ public class MembersServlet extends HttpServlet {
         File file = resource.getFile();
         System.out.println(file.getAbsolutePath());
         BeanFactory factory = new XmlBeanFactory(resource);
+
+        PersonService person = (PersonService) factory.getBean("personService");
+        person.sayHello();
+
         PersonService person1 = (PersonService) factory.getBean("personService1");
         person1.sayHello();
         System.out.println();
