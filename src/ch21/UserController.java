@@ -7,20 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 public class UserController extends MultiActionController {
-    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String userID = "";
-        String passwd = "";
-        ModelAndView mav = new ModelAndView();
-        request.setCharacterEncoding("utf-8");
-        userID = request.getParameter("userID");
-        passwd = request.getParameter("passwd");
-
-        mav.addObject("userID", userID);
-        mav.addObject("passwd", passwd);
-        mav.setViewName("result");
-        return mav;
-    }
-    
 //    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //        String userID = "";
 //        String passwd = "";
@@ -28,15 +14,29 @@ public class UserController extends MultiActionController {
 //        request.setCharacterEncoding("utf-8");
 //        userID = request.getParameter("userID");
 //        passwd = request.getParameter("passwd");
-//        String viewName=getViewName(request);
-//        
+//
 //        mav.addObject("userID", userID);
 //        mav.addObject("passwd", passwd);
-//        //mav.setViewName("result");
-//        mav.setViewName(viewName);
-//        System.out.println("ViewName:"+viewName);
+//        mav.setViewName("result");
 //        return mav;
 //    }
+    
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String userID = "";
+        String passwd = "";
+        ModelAndView mav = new ModelAndView();
+        request.setCharacterEncoding("utf-8");
+        userID = request.getParameter("userID");
+        passwd = request.getParameter("passwd");
+        String viewName=getViewName(request);
+        
+        mav.addObject("userID", userID);
+        mav.addObject("passwd", passwd);
+        //mav.setViewName("result");
+        mav.setViewName(viewName);
+        System.out.println("ViewName:"+viewName);
+        return mav;
+    }
 
     public ModelAndView memberInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("utf-8");
