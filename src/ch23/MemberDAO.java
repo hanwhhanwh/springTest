@@ -2,6 +2,7 @@ package ch23;
 
 import java.io.Reader;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -69,5 +70,67 @@ public class MemberDAO {
         List<MemberVO> membersList = null;
         membersList= session.selectList("mapper.member.selectMemberByPwd", pwd);
         return membersList;
+    }
+
+    public int insertMember(MemberVO memberVO) {
+        sqlMapper = getInstance();
+        SqlSession session = sqlMapper.openSession();
+        int result = 0;
+        result = session.insert("mapper.member.insertMember", memberVO);
+        session.commit();
+        return result;
+    }
+    public int insertMember2(Map<String,String> memberMap){
+        sqlMapper=getInstance();
+        SqlSession session=sqlMapper.openSession();
+        int result= result=session.insert("mapper.member.insertMember2",memberMap);
+        session.commit();   
+        return result;      
+    }
+
+    public int updateMember(MemberVO memberVO) {
+        sqlMapper = getInstance();
+        SqlSession session = sqlMapper.openSession();
+        int result = session.update("mapper.member.updateMember", memberVO);
+        session.commit();
+        return result;
+    }   
+    
+    public int deleteMember(String id) {
+        sqlMapper = getInstance();
+        SqlSession session = sqlMapper.openSession();
+        int result = 0;
+        result = session.delete("mapper.member.deleteMember", id);
+        session.commit();
+        return result;
+    } 
+    
+    public List  searchMember(MemberVO  memberVO){
+        sqlMapper=getInstance();
+        SqlSession session=sqlMapper.openSession();
+        List list=session.selectList("mapper.member.searchMember",memberVO);
+        return list;        
+    } 
+
+    public List  foreachSelect(List nameList){
+        sqlMapper=getInstance();
+        SqlSession session=sqlMapper.openSession();
+        List list=session.selectList("mapper.member.foreachSelect",nameList);
+        return list;        
+    }
+    
+    public int  foreachInsert(List memList){
+        sqlMapper=getInstance();
+        SqlSession session=sqlMapper.openSession();
+        int result = session.insert("mapper.member.foreachInsert",memList);
+        session.commit();
+        return result ;     
+    }
+    
+    public List  selectLike(String name){
+        sqlMapper=getInstance();
+        SqlSession session=sqlMapper.openSession();
+        List list=session.selectList("mapper.member.selectLike",name);
+        return list;        
     }
 }

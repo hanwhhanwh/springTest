@@ -44,7 +44,7 @@
      ]]>
      </select> 
      
-    <select id="selectMemberById" resultType="memberVO"  parameterType="String" >
+    <select id="selectMemberById" resultMap="memResult"  parameterType="String" >
       <![CDATA[
          SELECT * FROM MEMBER WHERE member_id=#{id}         
       ]]>
@@ -85,8 +85,8 @@
   </delete>
     
     
-    <!-- 동적 SQL문 -->
-  <select id="searchMember" parameterType="memberVO" resultMap="memResult">
+   <!-- 동적 SQL문 -->
+   <select id="searchMember" parameterType="memberVO" resultMap="memResult">
       <![CDATA[
           SELECT * FROM MEMBER
       ]]>
@@ -98,8 +98,8 @@
             and email = #{email}
          </if>
       </where>
-      ORDER BY join_date DESC
-  </select>
+       ORDER BY join_date DESC
+    </select>
   
  <!--  
    <sql id="a">
@@ -144,9 +144,8 @@
    </select>
    
    <insert id="foreachInsert"  parameterType="java.util.Map">
-      <foreach item="item"  collection="list"   open="INSERT ALL" separator=" " close="SELECT * FROM DUAL" >
-          INTO  MEMBER(member_id, password, member_name, email)
-          VALUES  (#{item.id}, #{item.pwd}, #{item.name}, #{item.email})
+      <foreach item="item"  collection="list"   open="INSERT INTO MEMBER (member_id, password, member_name, email) VALUES" separator=", " close=";" >
+          (#{item.id}, #{item.pwd}, #{item.name}, #{item.email})
       </foreach>
    </insert>
    
