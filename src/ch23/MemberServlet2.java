@@ -1,35 +1,37 @@
 package ch23;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/mem1.exe")
-public class MemberServlet1 extends HttpServlet {
+@WebServlet("/mem2.exe")
+public class MemberServlet2 extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         doHandle(request, response);
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doHandle(request, response);
     }
 
-    private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void doHandle(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         MemberDAO dao = new MemberDAO();
-        List<MemberVO> membersList = dao.selectAllMemberList();
-        request.setAttribute("membersList", membersList);
-        RequestDispatcher dispatch = request.getRequestDispatcher("/ch23/listMembers1.jsp");
-        dispatch.forward(request, response);
+        String name = dao.selectName();
+        String pwd = dao.selectPwd();
+        PrintWriter pw = response.getWriter();
+        pw.write("<script>");
+        pw.write("alert(' 이름: " + name +"\\n");
+        pw.write(" 비밀번호 : "+ pwd+"');");
+        pw.write("</script>");
+
     }
 }
