@@ -28,7 +28,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
         <property name="viewClass"
             value="org.springframework.web.servlet.view.JstlView" />
 <!--         <property name="prefix" value="/ch21/" /> -->
-        <property name="prefix" value="/ch22/" />
+<!--         <property name="prefix" value="/ch22/" /> -->
+        <property name="prefix" value="/ch24/" />
         <property name="suffix" value=".jsp" />
     </bean>
 
@@ -37,7 +38,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
         <property name="mappings">
             <props>
 <!--                 <prop key="/ch21/*.exe">userController</prop> -->
-                <prop key="/ch22/*.exe">memberController</prop>
+<!--                 <prop key="/ch22/*.exe">memberController</prop> -->
+                <prop key="/ch24/*.exe">memberController</prop>
             </props>
         </property>
     </bean>
@@ -49,7 +51,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     </bean>
 
     <bean id="memberController" 
-            class="ch22.MemberControllerImpl">
+            class="ch24.MemberControllerImpl">
         <property name="methodNameResolver">
             <ref local="userMethodNameResolver"/>
         </property>
@@ -62,10 +64,14 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
             <props>
 <!--                 <prop key="/ch21/login.exe">login</prop> -->
 <!--                 <prop key="/ch21/memberInfo.exe">memberInfo</prop>  -->
-                <prop key="/ch22/listMembers.exe" >listMembers</prop>
-                <prop key="/ch22/addMember.exe" >addMember</prop>
-                <prop key="/ch22/memberForm.exe" >memberForm</prop>
-                <prop key="/ch22/memberDetail.exe">memberDetail</prop>
+<!--                 <prop key="/ch22/listMembers.exe" >listMembers</prop> -->
+<!--                 <prop key="/ch22/addMember.exe" >addMember</prop> -->
+<!--                 <prop key="/ch22/memberForm.exe" >memberForm</prop> -->
+<!--                 <prop key="/ch22/memberDetail.exe">memberDetail</prop> -->
+                <prop key="/ch24/listMembers.exe" >listMembers</prop>
+                <prop key="/ch24/addMember.exe" >addMember</prop>
+                <prop key="/ch24/memberForm.exe" >memberForm</prop>
+                <prop key="/ch24/memberDetail.exe">memberDetail</prop>
             </props>
         </property>
     </bean>

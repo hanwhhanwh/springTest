@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+	<resultMap id="memResult" type="memberVO">
+		<result property="id" column="member_id" />
+        <result property="pwd" column="password" />
+        <result property="name" column="member_name" />
+        <result property="email" column="email" />
+        <result property="joinDate" column="join_date" />
+	</resultMap> 
+	<!-- 
+	<resultMap id="memResult" type="java.util.HashMap">
+		<result property="id" column="member_id" />
+		<result property="pwd" column="password" />
+		<result property="name" column="member_name" />
+		<result property="email" column="email" />
+		<result property="joinDate" column="join_date" />
+    </resultMap>
+	-->
+
+
+	<select id="selectAllMemberList" resultMap="memResult">
+        <![CDATA[
+             SELECT * FROM MEMBER ORDER BY join_date DESC	 	
+        ]]>
+	</select>
+
+	<select id="selectName" resultType="String">
+		<![CDATA[
+			SELECT member_name FROM MEMBER WHERE id = 'asdf'			
+		]]>
+	</select>
+	
+	<select id="selectPwd" resultType="int" >
+	  <![CDATA[ 
+	    SELECT password FROM MEMBER WHERE id = 'asdf'
+	 ]]>
+	 </select> 
+	 
+	<select id="selectMemberById" resultType="memberVO"  parameterType="String" >
+      <![CDATA[
+         SELECT * FROM MEMBER WHERE id=#{id}			
+      ]]>
+	 </select>	
+	
+	<select id="selectMemberByPwd" resultMap="memResult"  parameterType="int" >
+      <![CDATA[
+         SELECT * FROM MEMBER WHERE pwd = #{pwd}			
+      ]]>
+    </select>
+    
+     <insert id="insertMember"  parameterType="memberVO">
+		<![CDATA[
+		 INSERT INTO MEMBER (member_id, password, member_name, email)
+		 VALUES(#{id}, #{pwd}, #{name}, #{email})
+		]]>      
+	</insert>
+	
+	<insert id="insertMember2"  parameterType="java.util.Map">
+		<![CDATA[
+			 INSERT INTO MEMBER(member_id, password, member_name, email)
+			 VALUES(#{id}, #{pwd}, #{name}, #{email})
+		]]>      
+   </insert>
+   
+   <update id="updateMember"  parameterType="memberVO">
+     <![CDATA[
+	     UPDATE MEMBER
+	     SET password=#{pwd}, member_name=#{name}, email=#{email}
+	     WHERE member_id = #{id}
+      ]]>      
+   </update> 
+     
+   <delete id="deleteMember"  parameterType="String">
+	<![CDATA[
+	   DELETE FROM MEMBER WHERE member_id = #{id}
+	]]>      
+  </delete>
+	
+	
+	<!-- 동적 SQL문 -->
+  <select id="searchMember" parameterType="memberVO" resultMap="memResult">
+      <![CDATA[
+          SELECT * FROM MEMBER
+      ]]>
+      <where>
+         <if test=" name != ''  and  name != null">
+            member_name = #{name}
+         </if>
+         <if test="email != ''  and email != null ">
+            and email = #{email}
+         </if>
+      </where>
+      ORDER BY join_date DESC
+  </select>
+  
+ <!--  
+   <sql id="a">
+    <![CDATA[
+      SELECT * FROM MEMBER
+     ]]> 
+   </sql>  -->  
+  
+<!--    
+  <select id="searchMember" parameterType="memberVO" resultMap="memResult">
+	     <include refid="a" /> 
+	   <![CDATA[
+         SELECT * FROM MEMBER 
+      ]]>
+	  
+       <WHERE>
+		  <choose>
+		      <when test="name != '' and name != null and  email != '' and email != null">
+			     name=#{name} and email=#{email}
+		      </when>
+		      <when test="name != '' and name != null">
+			     name = #{name}
+		      </when>
+		      <when test="email !='' and email != null">
+			    email = #{email}
+		      </when>
+	      </choose>
+       </WHERE>
+       ORDER BY join_date DESC
+   </select> -->
+   
+   <select id="foreachSelect" resultMap="memResult" parameterType="java.util.Map">
+      <!-- <include refid="a" /> -->
+      <![CDATA[
+        SELECT * FROM MEMBER 
+      ]]>
+      WHERE member_name IN
+      <foreach item="item" collection="list" open="(" separator="," close=")" >
+         #{item}
+      </foreach>
+      ORDER BY join_date DESC
+   </select>
+   
+   <insert id="foreachInsert"  parameterType="java.util.Map">
+      <foreach item="item"  collection="list"   open="INSERT ALL" separator=" " close="SELECT * FROM DUAL" >
+          INTO  MEMBER(member_id, password, member_name, email)
+          VALUES  (#{item.id}, #{item.pwd}, #{item.name}, #{item.email})
+      </foreach>
+   </insert>
+   
+   <!-- 
+    <select id="selectLike" resultMap="memResult"  parameterType="String" >
+      <![CDATA[
+         SELECT * FROM MEMBER WHERE member_name LIKE '%'#{name}'%'		
+      ]]>
+    </select>
+     -->
+   <!--  like 검색 -->
+   <select id="selectLike" resultMap="memResult"  parameterType="String" >
+      <![CDATA[
+         SELECT * FROM MEMBER WHERE member_name LIKE '%' || #{name} || '%'		
+      ]]>
+    </select>
+</mapper>
