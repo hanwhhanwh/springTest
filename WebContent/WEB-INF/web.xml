@@ -34,8 +34,8 @@
         <param-value>
 <!--             /ch22/config/action-service.xml -->
 <!--             /ch22/config/action-dataSource.xml -->
-            /ch24/config/action-mybatis.xml
-            /ch24/config/action-service.xml
+            /ch25/config/action-mybatis.xml
+            /ch25/config/action-service.xml
         </param-value>
     </context-param>
 

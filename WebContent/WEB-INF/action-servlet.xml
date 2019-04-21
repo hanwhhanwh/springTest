@@ -40,6 +40,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 <!--                 <prop key="/ch21/*.exe">userController</prop> -->
 <!--                 <prop key="/ch22/*.exe">memberController</prop> -->
                 <prop key="/ch24/*.exe">memberController</prop>
+                <prop key="/ch25/*.exe">accController</prop>
             </props>
         </property>
     </bean>
@@ -48,6 +49,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
         <property name="methodNameResolver">
             <ref local="userMethodNameResolver" />
         </property>
+    </bean>
+
+    <bean id="accController"  class="ch25.AccountController">
+      <property name="methodNameResolver">
+         <ref local="userMethodNameResolver"/>
+      </property>
+      <property name="accService" ref="accService"/>
     </bean>
 
     <bean id="memberController" 
@@ -72,6 +80,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
                 <prop key="/ch24/addMember.exe" >addMember</prop>
                 <prop key="/ch24/memberForm.exe" >memberForm</prop>
                 <prop key="/ch24/memberDetail.exe">memberDetail</prop>
+                <prop key="/ch25/sendMoney.exe">sendMoney</prop>
             </props>
         </property>
     </bean>
