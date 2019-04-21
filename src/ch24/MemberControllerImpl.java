@@ -9,16 +9,15 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import ch24.MemberService;
-import ch24.MemberServiceImpl;
 import ch24.MemberVO;
 
 public class MemberControllerImpl extends MultiActionController implements MemberController {
 	private MemberService memberService;
 
-	public void setMemberService(MemberServiceImpl memberService) {
-		this.memberService = memberService;
-	}
-	
+    public void setMemberService(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
 	@Override
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);

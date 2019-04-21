@@ -83,7 +83,7 @@ public class MemberDAO {
     public int insertMember2(Map<String,String> memberMap){
         sqlMapper=getInstance();
         SqlSession session=sqlMapper.openSession();
-        int result= result=session.insert("mapper.member.insertMember2",memberMap);
+        int result = session.insert("mapper.member.insertMember2",memberMap);
         session.commit();   
         return result;      
     }
@@ -105,21 +105,21 @@ public class MemberDAO {
         return result;
     } 
     
-    public List  searchMember(MemberVO  memberVO){
+    public List<MemberVO>  searchMember(MemberVO  memberVO){
         sqlMapper=getInstance();
         SqlSession session=sqlMapper.openSession();
-        List list=session.selectList("mapper.member.searchMember",memberVO);
+        List<MemberVO> list=session.selectList("mapper.member.searchMember",memberVO);
         return list;        
     } 
 
-    public List  foreachSelect(List nameList){
+    public List<MemberVO>  foreachSelect(List<String> nameList){
         sqlMapper=getInstance();
         SqlSession session=sqlMapper.openSession();
-        List list=session.selectList("mapper.member.foreachSelect",nameList);
+        List<MemberVO> list=session.selectList("mapper.member.foreachSelect",nameList);
         return list;        
     }
     
-    public int  foreachInsert(List memList){
+    public int  foreachInsert(List<MemberVO> memList){
         sqlMapper=getInstance();
         SqlSession session=sqlMapper.openSession();
         int result = session.insert("mapper.member.foreachInsert",memList);
@@ -127,10 +127,10 @@ public class MemberDAO {
         return result ;     
     }
     
-    public List  selectLike(String name){
+    public List<MemberVO>  selectLike(String name){
         sqlMapper=getInstance();
         SqlSession session=sqlMapper.openSession();
-        List list=session.selectList("mapper.member.selectLike",name);
+        List<MemberVO> list=session.selectList("mapper.member.selectLike",name);
         return list;        
     }
 }

@@ -18,40 +18,36 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-    <bean id="sqlSessionFactory24"
-        class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory24" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation"
             value="classpath:ch24/mybatis/model/modelConfig.xml" />
         <property name="mapperLocations" value="classpath:ch24/mybatis/mappers/*.xml" />
     </bean>
 
-    <bean id="sqlSession24"
-        class="org.mybatis.spring.SqlSessionTemplate">
+    <bean id="sqlSession24" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactory24"></constructor-arg>
     </bean>
 
-    <bean id="memberDAO"
-        class="ch24.MemberDAOImpl">
+    <bean id="memberDAO24" class="ch24.MemberDAOImpl">
         <property name="sqlSession" ref="sqlSession24"></property>
     </bean>
 
-	<bean id="sqlSessionFactory25"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
+
+	<bean id="sqlSessionFactory25" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"
 			value="classpath:ch25/mybatis/mappers/*.xml" />
 	</bean>
 
-	<bean id="sqlSession25"
-		class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSession25" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory25"></constructor-arg>
 	</bean>
 
-
-   <bean id="accDAO" class="ch25.AccountDAO">
+   <bean id="accDAO25" class="ch25.AccountDAO">
       <property name="sqlSession" ref="sqlSession25" />
    </bean>
+
     
 	<bean id="txManager"  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	       <property name="dataSource" ref="dataSource" />

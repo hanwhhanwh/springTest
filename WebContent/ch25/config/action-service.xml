@@ -7,11 +7,11 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
-    <bean id="memberService" class="ch24.MemberServiceImpl">
-        <property name="memberDAO" ref="memberDAO"/>
+    <bean id="memberService24" class="ch24.MemberServiceImpl">
+        <property name="memberDAO" ref="memberDAO24"/>
     </bean>
 
-   <bean id="accService" class="ch25.AccountService">
-      <property name="accDAO" ref="accDAO"/>
+   <bean id="accService25" class="ch25.AccountService">
+      <property name="accDAO" ref="accDAO25"/>
    </bean>
 </beans>

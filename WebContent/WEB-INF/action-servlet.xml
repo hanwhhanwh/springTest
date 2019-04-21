@@ -29,7 +29,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
             value="org.springframework.web.servlet.view.JstlView" />
 <!--         <property name="prefix" value="/ch21/" /> -->
 <!--         <property name="prefix" value="/ch22/" /> -->
-        <property name="prefix" value="/ch24/" />
+<!--         <property name="prefix" value="/ch24/" /> -->
         <property name="suffix" value=".jsp" />
     </bean>
 
@@ -51,19 +51,18 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
         </property>
     </bean>
 
+    <bean id="memberController"  class="ch24.MemberControllerImpl">
+        <property name="methodNameResolver">
+            <ref local="userMethodNameResolver"/>
+        </property>
+        <property name="memberService" ref="memberService24"/>
+    </bean>
+
     <bean id="accController"  class="ch25.AccountController">
       <property name="methodNameResolver">
          <ref local="userMethodNameResolver"/>
       </property>
-      <property name="accService" ref="accService"/>
-    </bean>
-
-    <bean id="memberController" 
-            class="ch24.MemberControllerImpl">
-        <property name="methodNameResolver">
-            <ref local="userMethodNameResolver"/>
-        </property>
-        <property name="memberService" ref="memberService"/>
+      <property name="accService" ref="accService25"/>
     </bean>
 
     <bean id="userMethodNameResolver"

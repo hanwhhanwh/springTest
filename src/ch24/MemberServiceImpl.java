@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ch24.MemberDAO;
 import ch24.MemberVO;
 
-/*@Transactional(propagation=Propagation.REQUIRED) */
+@Transactional(propagation=Propagation.REQUIRED)
 public class MemberServiceImpl  implements MemberService{
 	   private MemberDAO memberDAO;
 	   public void setMemberDAO(MemberDAO memberDAO){
